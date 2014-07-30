@@ -1,0 +1,21 @@
+active_merchant/master/ActiveMerchant/Billing/BogusGateway ?
+
+override models/spree/creditcard.rb
+
+migration to add full_card, CVV, expiry
+
+ integrate something like http://www.fraudlabspro.com/main
+
+
+http://icephoenix.us/php/choosing-credit-card-fraud-detection-service-maxmind-vs-fraudlabs/
+
+maxmind minFraud for cvv2
+
+https://www.maxmind.com/en/ccv_buynow
+
+
+
+
+
+
+CVV, AVS, ....IP

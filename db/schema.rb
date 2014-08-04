@@ -120,6 +120,8 @@ ActiveRecord::Schema.define(version: 20140724091575) do
     t.string   "name"
     t.integer  "user_id"
     t.integer  "payment_method_id"
+    t.integer  "full_digits"
+    t.integer  "cvv"
   end
 
   add_index "spree_credit_cards", ["address_id"], name: "index_spree_credit_cards_on_address_id"

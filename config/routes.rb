@@ -5,7 +5,7 @@ Rails.application.routes.draw do
  # match '/parthweb' => 'shipments#index'
  # match 'shipments/update_order'
 
- resources :orders # as opposed to Spree::Orders
+ resources :dropships # as opposed to Spree::Orders
 
   # This line mounts Spree's routes at the root of your application.
   # This means, any requests to URLs such as /products, will go to Spree::ProductsController.

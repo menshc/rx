@@ -1,4 +1,4 @@
-class OrdersController < ActionController::Base # as opposed to Spree::OrdersController
+class DropshipsController < ActionController::Base # as opposed to Spree::OrdersController
 
     respond_to :json, :js, :html
 

@@ -4,9 +4,9 @@
 # is considered to be the first unless any hosts have the primary
 # property set.  Don't declare `role :all`, it's a meta role.
 
-role :app, %w{rx.alias}
-role :web, %w{rx.alias}
-role :db,  %w{rx.alias}
+role :app, %w{80.82.64.183}
+role :web, %w{80.82.64.183}
+role :db,  %w{80.82.64.183}
 
 
 # Extended Server Syntax
@@ -33,7 +33,7 @@ role :db,  %w{rx.alias}
 #
 # And/or per server (overrides global)
 # ------------------------------------
- server 'rx.alias',
+ server '80.82.64.183',
    user: 'rx',
    roles: %w{web app db},
    ssh_options: {

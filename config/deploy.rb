@@ -4,17 +4,18 @@ lock '3.2.1'
 set :application, 'rx'
 #set :repo_url, 'git@example.com:me/my_repo.git'
 
-
-#set :deploy_via, :copy
+#set :repository, "."
+#set :deploy_via, :put
+#set :scm, :none
 #set :use_sudo, false    
 #set :scm, "git"
 #set :repository, "."
 #set :local_repository, "."
 #set :branch, "master"
 
-set :repository, "file://."
-set :local_repository, "file://."
-set :scm, :git
+#set :repository, "file://."
+#set :local_repository, "file://."
+#set :scm, :git
 
 # Default branch is :master
 # ask :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }.call

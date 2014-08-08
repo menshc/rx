@@ -1,0 +1,307 @@
+<%= javascript_include_tag 'application' %>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+
+<style>
+
+.mtop20 {
+
+
+	margin-top: 20px;
+}
+</style>
+
+<div class="container">
+
+
+<!-- 
+<ul id="myTabs" class="nav nav-tabs" role="tablist">
+  <li class="active"><a href="#one">Home</a></li>
+  <li><a href="#two">Profile</a></li>
+  <li><a href="#three">Messages</a></li>
+</ul>
+
+
+<div class="tab-content">
+
+	<div class="tab-pane fade active" id="one">
+	one
+	</div>
+
+	<div class="tab-pane fade" id="two">
+	two
+	</div>
+
+
+	<div class="tab-pane fade" id="three">
+	three
+	</div>
+
+</div>
+
+<script>
+
+
+$('#myTabs a').click(function (e) {
+  e.preventDefault()
+  $(this).tab('show')
+})
+
+</script>
+
+-->
+
+
+<div style="margin:20px;">
+
+<a href='/orders?filter=unpaid'>Payment Required | Shipping Required</a> <br>
+<a href='/orders?filter=unshipped'>Paid | Shipping Required</a> <br>
+<a href='/orders?filter=shipped'>Paid | Shipped</a> <br>
+<a href='/orders'>All</a>
+
+</div>
+
+	<% @orders.each do |order| %>
+
+
+			<div class="row order-container" id="order_<%=order.id%>"> 
+
+			<div class="row order-details">
+
+						<h3><%= order.number %></h3> <%= order.created_at %>
+						<br>
+						<br>
+
+						<div class="col-md-4">
+
+							<b>Credit Card</b>
+							<% cc = order.credit_cards.last %>
+
+							<br>
+							<% if cc %>
+							<%= cc.name %>
+								<br>
+
+							<%= cc.full_digits %>  ( <%= cc.cvv %> )
+								<br>
+
+							<%= cc.month %>/<%= cc.year %>
+							<br>
+							<br>
+							<% end %>
+
+
+						</div>
+
+
+						<div class="col-md-4" >
+
+
+								
+							  <b>Billing Address</b>
+							  <br>
+						      <%= if order.bill_address
+						      	render :partial => 'spree/shared/address', :locals => { :address => order.bill_address }
+						      	end %>
+
+
+						 </div>
+
+						<div class="col-md-4">
+
+
+
+							<b>Shipping Address</b>
+							<br>
+						    <%= if order.ship_address 
+						    	render :partial => 'spree/shared/address', :locals => { :address => order.ship_address }
+						    	end %>
+
+						</div>
+
+
+
+
+			</div>
+
+
+			<div class="row order-items mtop20">
+
+							<table class="table table-condensed table-bordered table-striped">
+							
+							<% order.line_items.each do |line_item| %>
+							
+
+								
+								
+								 <tr>
+									<td>Quantity</td>   <td>Product</td>
+								 </tr>
+									<td> <%= line_item.quantity%>  </td> <td>
+
+										<%= line_item.product.name %> 
+
+								
+								
+
+							
+							<%end%>
+							
+							</table>
+							
+
+
+<b>Payment State</b><br>
+
+<% if order.payment_state != 'paid' %>
+
+<div class="btn-group" id="payment-update-btn-group">
+    <button type="button" data-orderid=<%=order.id%> data-order-payment-value=pending        class="payment-update-btn btn btn-default">Pending</button>
+
+    <!--
+    <button type="button" data-orderid=<%=order.id%> data-order-payment-value=processing     class="payment-update-btn btn btn-default">Processing</button>
+    <button type="button" data-orderid=<%=order.id%> data-order-payment-value=void           class="payment-update-btn btn btn-default">Void</button>
+    <button type="button" data-orderid=<%=order.id%> data-order-payment-value=invalid        class="payment-update-btn btn btn-default">Invalid</button>
+	-->
+
+    <button type="button" data-orderid=<%=order.id%> data-order-payment-value=paid      class="payment-update-btn btn btn-default">Paid</button>
+    <button type="button" data-orderid=<%=order.id%> data-order-payment-value=failed         class="payment-update-btn btn btn-default">Failed</button>
+    <!--
+    <button type="button" data-orderid=<%=order.id%> data-order-payment-value=completed      class="payment-update-btn btn btn-default">Completed</button>
+    -->
+</div>
+
+<%else%>
+
+<h3>PAID</h3>
+
+<%end%>
+
+
+
+
+<br><br>
+
+
+<% if order.payment_state = 'paid' %>
+
+		<b>Shipping</b>
+
+
+		<% if order.shipped? %>
+
+
+		<h3>SHIPPED</h3>  
+		<%= order.shipments.first.tracking %> <br>
+		<%= order.shipments.first.shipped_at %>
+
+		<%else%>
+
+
+
+		<%= order.shipment_state %> <br>
+		 
+
+		<br>
+
+
+			<div class="input-group">
+					<input id="trackingno" type="text" class="form-control" placeholder="Tracking #"> 
+					<button data-orderid=<%=order.id%> class="btn-mark-shipped btn btn-warning">Mark Shipped</button>
+			</div>
+
+
+
+
+
+		<%end%>
+
+
+
+<%end%>					
+							
+
+
+
+			</div>
+
+	</div> <!-- order container -->
+
+	<hr>
+	<hr>
+	<hr>
+	<hr>
+
+
+	<%end%>	
+
+
+
+
+</div> <!-- container -->
+
+
+
+<script>
+
+
+
+
+$('.payment-update-btn').click(function() {
+
+		//console.log(this)
+		console.log( $(this).data('orderid')  )
+		console.log( $(this).data('order-payment-value')  )
+
+		payment_state =  $(this).data('order-payment-value')
+		url = '/orders/' +   $(this).data('orderid')
+		
+		post_data =  JSON.stringify({ payment_state: payment_state })
+
+	//    $.post(url, post_data)
+
+	    $.ajax({ url: url,
+	    		 type: 'PUT',
+	    		 contentType: "application/json",
+	    		 dataType: "json",
+	    		 data: post_data })
+
+
+
+
+
+
+});
+
+
+
+
+$('.btn-mark-shipped').click(function() {
+
+	url = '/orders/' +   $(this).data('orderid')
+	tracking_no =  $(this).parent().children().first().val()
+
+	//console.log(url)
+	//console.log(tracking_no)
+
+	post_data =  JSON.stringify({ mark_shipped_with_tracking: tracking_no })
+
+
+    $.ajax({ url: url,
+	 type: 'PUT',
+	 contentType: "application/json",
+	 dataType: "json",
+	 data: post_data 
+	})
+
+
+
+
+
+});
+
+
+
+</script>
+	

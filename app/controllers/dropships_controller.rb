@@ -45,7 +45,7 @@ class DropshipsController < ActionController::Base # as opposed to Spree::Orders
   # we are re-using this attribute because I cant add attr_accessor for tracking 
     
 
-    if params[:order][:special_instructions]
+    if params[:dropship][:special_instructions]
 
 
          shipment = order.shipments.first
@@ -98,7 +98,7 @@ class DropshipsController < ActionController::Base # as opposed to Spree::Orders
   private
 
   def order_params
-    params.require(:order).permit(:payment_state, :special_instructions)
+    params.require(:dropship).permit(:payment_state, :special_instructions)
   end
   
 

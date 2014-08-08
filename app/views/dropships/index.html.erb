@@ -255,7 +255,7 @@ $('.payment-update-btn').click(function() {
 		console.log( $(this).data('order-payment-value')  )
 
 		payment_state =  $(this).data('order-payment-value')
-		url = '/orders/' +   $(this).data('orderid')
+		url = '/dropships/' +   $(this).data('orderid')
 		
 		post_data =  JSON.stringify({ payment_state: payment_state })
 
@@ -279,7 +279,7 @@ $('.payment-update-btn').click(function() {
 
 $('.btn-mark-shipped').click(function() {
 
-	url = '/orders/' +   $(this).data('orderid')
+	url = '/dropships/' +   $(this).data('orderid')
 	tracking_no =  $(this).parent().children().first().val()
 
 	//console.log(url)

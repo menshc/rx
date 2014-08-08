@@ -41,12 +41,16 @@ class OrdersController < ActionController::Base # as opposed to Spree::OrdersCon
     order.update_attributes(order_params)
 
 
-    if params[:mark_shipped_with_tracking]
+
+  # we are re-using this attribute because I cant add attr_accessor for tracking 
+    
+
+    if params[:order][:special_instructions]
 
 
          shipment = order.shipments.first
          
-         shipment.tracking = params[:mark_shipped_with_tracking]
+         shipment.tracking = params[:special_instructions]
          shipment.state = "shipped"  
          shipment.shipped_at = DateTime.now
          shipment.save
@@ -94,7 +98,7 @@ class OrdersController < ActionController::Base # as opposed to Spree::OrdersCon
   private
 
   def order_params
-    params.require(:order).permit(:payment_state).permit(:mark_shipped_with_tracking)
+    params.require(:order).permit(:payment_state, :special_instructions)
   end
   
 

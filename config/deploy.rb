@@ -5,7 +5,7 @@ set :application, 'rx'
 #set :repo_url, 'git@example.com:me/my_repo.git'
 
 
-set :repo_url, 'git@github.com/menshc/rx.git'
+set :repo_url, 'git://github.com/menshc/rx.git'
 
 #set :repository, "."
 #set :deploy_via, :put

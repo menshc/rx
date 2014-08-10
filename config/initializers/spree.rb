@@ -9,6 +9,8 @@ Spree.config do |config|
   # Example:
   # Uncomment to stop tracking inventory levels in the application
   # config.track_inventory_levels = false
+    config.allow_ssl_in_production = false #This line
+
 end
 
 Spree.user_class = "Spree::User"
@@ -20,3 +22,5 @@ Spree.user_class = "Spree::User"
 
 Rails.application.config.spree.payment_methods << Spree::Gateway::VirtualTerminal
 Rails.application.config.spree.payment_methods << Spree::Gateway::BlockChain
+
+

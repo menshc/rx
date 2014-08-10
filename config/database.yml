@@ -21,11 +21,10 @@ test:
   database: db/test.sqlite3
 
 production:
-  adapter: mysql2
+  adapter: mysql
   encoding: utf8
   username: rx
   password: rx
   database: rx
-  socket: /tmp/mysql.sock
   host: localhost
   port: 3306

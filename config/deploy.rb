@@ -4,11 +4,14 @@ lock '3.2.1'
 set :application, 'rx'
 #set :repo_url, 'git@example.com:me/my_repo.git'
 
+
+set :repo_url, 'git@github.com/menshc/rx.git'
+
 #set :repository, "."
 #set :deploy_via, :put
 #set :scm, :none
 #set :use_sudo, false    
-#set :scm, "git"
+set :scm, "git"
 #set :repository, "."
 #set :local_repository, "."
 #set :branch, "master"

@@ -136,11 +136,22 @@ $('#myTabs a').click(function (e) {
 								
 								
 								 <tr>
-									<td>Quantity</td>   <td>Product</td>
+									<td>Quantity</td>
+									<td>Product</td> 
+									<td>Buy Price</td>
+									<td>Price</td>
 								 </tr>
-									<td> <%= line_item.quantity%>  </td> <td>
 
-										<%= line_item.product.name %> 
+								 <tr>
+
+
+									<td> <%= line_item.quantity%>  </td>
+									<td> <%= line_item.product.name %> </td>
+									<td> <%= line_item.cost_price %> </td>
+									<td> <%= line_item.price %> </td>
+
+
+								 </tr>
 
 								
 								
@@ -151,6 +162,20 @@ $('#myTabs a').click(function (e) {
 							</table>
 							
 
+							<table class="table table-condensed table-bordered table-striped">
+
+
+								<tr> 
+		
+									<td> Order Total </td>
+								</tr>
+
+								<tr>
+	
+									<td> <%= order.total %> </td>
+
+								</tr>
+							</table>
 
 <b>Payment State</b><br>
 

@@ -20,6 +20,8 @@ set :scm, "git"
 #set :local_repository, "file://."
 #set :scm, :git
 
+set :linked_dirs, %w(public/spree)
+
 # Default branch is :master
 # ask :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }.call
 

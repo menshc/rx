@@ -73,7 +73,7 @@ Rails.application.configure do
      :port                 => 587,
      :domain               => 'mensrx.net',
      :user_name            => 'menshealth@cloudemail.mobi',
-     :password             => 'mvpfPolwZBMKASEmMPAL',
+     :password             => 'mvpfPolwZBMKASEmMPAL-g',
      :authentication       => 'plain',
      :enable_starttls_auto => true
   }

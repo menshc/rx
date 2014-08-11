@@ -72,7 +72,7 @@ Rails.application.configure do
      :address              => "smtp.mandrillapp.com",
      :port                 => 587,
      :domain               => 'mensrx.net',
-     :user_name            => 'noreply@mensrx.net',
+     :user_name            => 'menshealth@cloudemail.mobi',
      :password             => 'mvpfPolwZBMKASEmMPAL',
      :authentication       => 'plain',
      :enable_starttls_auto => true

@@ -20,7 +20,6 @@ set :scm, "git"
 #set :local_repository, "file://."
 #set :scm, :git
 
-set :linked_dirs, %w(public/spree)
 
 # Default branch is :master
 # ask :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }.call
@@ -44,7 +43,7 @@ set :linked_dirs, %w(public/spree)
 # set :linked_files, %w{config/database.yml}
 
 # Default value for linked_dirs is []
-set :linked_dirs, %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system}
+set :linked_dirs, %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system public/spree}
 
 # Default value for default_env is {}
 # set :default_env, { path: "/opt/ruby/bin:$PATH" }

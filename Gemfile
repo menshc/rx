@@ -1,6 +1,8 @@
 source 'https://rubygems.org'
 
 gem 'capistrano', '~> 3.2.0'
+gem 'capistrano-bundler' # for capistrano/bundler
+gem 'capistrano-rails' # for capistrano/rails/*
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.2'
 gem 'mysql2'

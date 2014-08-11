@@ -10,10 +10,15 @@ Spree.config do |config|
   # Uncomment to stop tracking inventory levels in the application
   # config.track_inventory_levels = false
     config.allow_ssl_in_production = false #This line   
+
+ # config.override_actionmailer_config = false
+  #config.mails_from = "no-reply@yourdomain.com"
+ # config.enable_mail_delivery = true
+
+
 end
 
 Spree.user_class = "Spree::User"
-
 
 
 

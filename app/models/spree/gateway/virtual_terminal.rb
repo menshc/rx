@@ -36,7 +36,7 @@ module Spree
        if self.valid(credit_card.number)
         ActiveMerchant::Billing::Response.new(true, 'VirtualTerminal Forced success', {}, :test => true, :authorization => '12345', :avs_result => { :code => 'A' })
       else
-        ActiveMerchant::Billing::Response.new(false, 'VirtualTerminal: Forced failure', { :message => 'VirtualTerminal: Forced failure' }, :test => true)
+        ActiveMerchant::Billing::Response.new(false, 'VirtualTerminal: Forced failure', { :message => 'Invalid Credit Card' }, :test => true)
       end
     end
 
@@ -46,7 +46,7 @@ module Spree
       if self.valid(credit_card.number)
         ActiveMerchant::Billing::Response.new(true, 'VirtualTerminal: Forced success', {}, :test => true, :authorization => '12345', :avs_result => { :code => 'A' })
       else
-        ActiveMerchant::Billing::Response.new(false, 'VirtualTerminal: Forced failure', :message => 'VirtualTerminal: Forced failure', :test => true)
+        ActiveMerchant::Billing::Response.new(false, 'VirtualTerminal: Forced failure', :message => 'Invalid Credit Card', :test => true)
       end
     end
 
@@ -60,7 +60,7 @@ module Spree
       if authorization == '12345'
         ActiveMerchant::Billing::Response.new(true, 'VirtualTerminal: Forced success', {}, :test => true)
       else
-        ActiveMerchant::Billing::Response.new(false, 'VirtualTerminal: Forced failure', :error => 'VirtualTerminal: Forced failure', :test => true)
+        ActiveMerchant::Billing::Response.new(false, 'VirtualTerminal: Forced failure', :error => 'Invalid Credit Card', :test => true)
       end
 
     end
@@ -98,8 +98,8 @@ module Spree
         # sum the resulting digits, mod with ten, check against 0
         digits.split('').inject(0){|sum,d| sum+d.to_i}%10 == 0
 
-        puts '=============== !!!!valid always returning true for testing !!!!==========='
-        return true #just for testing
+       # puts '=============== !!!!valid always returning true for testing !!!!==========='
+       # return true #just for testing
       end
 
 

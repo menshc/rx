@@ -139,7 +139,7 @@ $('#myTabs a').click(function (e) {
 									<td>Price</td>
 								 </tr>
 
-								 
+
 
 							<% order.line_items.each do |line_item| %>
 							
@@ -168,12 +168,53 @@ $('#myTabs a').click(function (e) {
 							</table>
 							
 
+
+
+
+							<% 
+									@cost_price_total = 0
+									order.line_items.each do |li|
+										@cost_price_total = @cost_price_total + ( li.cost_price * li.quantity )
+									end
+
+									@payment_processing_fee = order.total * 0.25 
+									@shipping_fee = 20.0
+									@net_profit = order.total - @shipping_fee -  @cost_price_total - @payment_processing_fee 
+							%> 
+
+
 							<table class="table table-condensed table-bordered table-striped">
 
 
 								<tr> 
 		
-									<td> Order Total </td>
+									<td>  Shipping </td>
+									<td>  Buy Cost </td>
+									<td>  Payment Processing (25%) </td>
+									<td>  Net Profit </td>
+
+								</tr>
+
+								<tr>
+	
+									<td> <%= @shipping_fee  %> </td>
+									<td> <%= @cost_price_total %></td>
+									<td> <%= @payment_processing_fee %>  </td>
+									<td> <%= @net_profit %> </td>
+
+
+								</tr>
+							</table>
+
+
+
+
+							<table class="table table-condensed table-bordered table-striped">
+
+
+								<tr> 
+		
+									<td> Order Payment Total Due </td>
 								</tr>
 
 								<tr>
@@ -182,6 +223,11 @@ $('#myTabs a').click(function (e) {
 
 								</tr>
 							</table>
+
+
+
+
+
 
 <b>Payment State</b><br>
 

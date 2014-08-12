@@ -197,10 +197,10 @@ $('#myTabs a').click(function (e) {
 
 								<tr>
 	
-									<td> <%= @shipping_fee  %> </td>
-									<td> <%= @cost_price_total %></td>
-									<td> <%= @payment_processing_fee %>  </td>
-									<td> <%= @net_profit %> </td>
+									<td> <%= @shipping_fee.round(2)  %> </td>
+									<td> <%= @cost_price_total.round(2) %></td>
+									<td> <%= @payment_processing_fee.round(2) %>  </td>
+									<td> <%= @net_profit.round(2) %> </td>
 
 
 								</tr>

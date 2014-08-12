@@ -1,9 +1,23 @@
 
+
+<% if  current_page?('/') %>
 <div style='float:left; width:800px;'>
 <%= image_tag 'visa.png' %> <%= image_tag 'mastercard.png' %>
 </div>
-<!--
-<div style='float:left; width:100px;'>
-support@mensrx.net
-</div>
--->
+<%end%>
+
+
+<script>
+
+$(function() {
+
+
+
+cards_div = '<div style="float:left; width:800px;"><img alt="Visa" src="/assets/visa.png"> <img alt="Mastercard" src="/assets/mastercard.png"></div>'
+
+
+$(cards_div).insertAfter('#credit-card-image')   
+$('#credit-card-image').remove()
+
+});
+</script>

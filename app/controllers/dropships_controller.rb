@@ -30,7 +30,7 @@ class DropshipsController < ActionController::Base # as opposed to Spree::Orders
 
           @orders = Spree::Order.where(payment_state: 'paid').where(shipment_state: 'shipped')
     
-    else
+    else # filter=unpaid
          
           @orders = Spree::Order.where.not(payment_state: 'paid')
 

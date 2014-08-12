@@ -1,5 +1,11 @@
 class DropshipsController < ActionController::Base # as opposed to Spree::OrdersController
 
+
+
+   http_basic_authenticate_with name: "thc4u", password: "tetra"#, except: :index
+
+
+
     respond_to :json, :js, :html
 
 

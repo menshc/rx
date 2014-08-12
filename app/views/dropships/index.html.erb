@@ -65,7 +65,7 @@ $('#myTabs a').click(function (e) {
 	<% @orders.each do |order| %>
 
 
-			<div  class="row order-container well" id="order_<%=order.id%>"> 
+			<div class="row order-container well" id="order_<%=order.id%>"> 
 
 			<div class="row order-details">
 
@@ -181,17 +181,29 @@ $('#myTabs a').click(function (e) {
 
 <% if order.payment_state != 'paid' %>
 
+<%
+
+	btn_class = {}
+	btn_class[:pending] = order.payment_state == 'pending'  ? 'active' : ''
+    btn_class[:paid] =    order.payment_state == 'paid'  ? 'active' : ''
+	btn_class[:failed] =  order.payment_state == 'failed'  ? 'active' : ''
+	btn_class[:void] =  order.payment_state == 'void'  ? 'active' : ''
+
+%>
+
 <div class="btn-group" id="payment-update-btn-group">
-    <button type="button" data-orderid=<%=order.id%> data-order-payment-value=pending        class="payment-update-btn btn btn-default">Pending</button>
 
     <!--
+    <button type="button" data-orderid=<%=order.id%> data-order-payment-value=pending        class="payment-update-btn btn btn-default <%= btn_class[:pending] %>">Pending</button>
+    <button type="button" data-orderid=<%=order.id%> data-order-payment-value=void           class="payment-update-btn btn btn-default <%= btn_class[:void] %>">Void</button>
+
+
     <button type="button" data-orderid=<%=order.id%> data-order-payment-value=processing     class="payment-update-btn btn btn-default">Processing</button>
-    <button type="button" data-orderid=<%=order.id%> data-order-payment-value=void           class="payment-update-btn btn btn-default">Void</button>
     <button type="button" data-orderid=<%=order.id%> data-order-payment-value=invalid        class="payment-update-btn btn btn-default">Invalid</button>
 	-->
+    <button type="button" data-orderid=<%=order.id%> data-order-payment-value=failed         class="payment-update-btn btn btn-default <%= btn_class[:failed] %>">Failed</button>
+    <button type="button" data-orderid=<%=order.id%> data-order-payment-value=paid           class="payment-update-btn btn btn-default <%= btn_class[:paid] %>">Paid</button>
 
-    <button type="button" data-orderid=<%=order.id%> data-order-payment-value=paid      class="payment-update-btn btn btn-default">Paid</button>
-    <button type="button" data-orderid=<%=order.id%> data-order-payment-value=failed         class="payment-update-btn btn btn-default">Failed</button>
     <!--
     <button type="button" data-orderid=<%=order.id%> data-order-payment-value=completed      class="payment-update-btn btn btn-default">Completed</button>
     -->
@@ -209,7 +221,6 @@ $('#myTabs a').click(function (e) {
 <br><br>
 
 
-<% if order.payment_state = 'paid' %>
 
 		<b>Shipping</b>
 
@@ -244,7 +255,6 @@ $('#myTabs a').click(function (e) {
 
 
 
-<%end%>					
 							
 
 
@@ -273,6 +283,13 @@ $('#myTabs a').click(function (e) {
 
 
 $('.payment-update-btn').click(function() {
+
+
+
+
+//	$(".btn-group > .btn").click(function(){
+    $(this).addClass("active").siblings().removeClass("active");
+
 
 		//console.log(this)
 		console.log( $(this).data('orderid')  )
@@ -311,12 +328,18 @@ $('.btn-mark-shipped').click(function() {
 
 	post_data =  JSON.stringify({ special_instructions: tracking_no })
 
+	var btn = this
 
     $.ajax({ url: url,
 	 type: 'PUT',
 	 contentType: "application/json",
 	 dataType: "json",
 	 data: post_data 
+	}).done(function() {
+
+		$(btn).prop('disabled', true);
+		$(btn).siblings().prop('disabled', true);
+
 	})
 
 

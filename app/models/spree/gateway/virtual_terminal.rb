@@ -34,7 +34,7 @@ module Spree
        puts '----------------------------------------------------------------'
 
        if self.valid(credit_card.number)
-        ActiveMerchant::Billing::Response.new(true, 'VirtualTerminal Forced success', {}, :test => true, :authorization => '12345', :avs_result => { :code => 'A' })
+        ActiveMerchant::Billing::Response.new(true, 'VirtualTerminal Forced success', {}, :test => true, :authorization => '12345', :avs_result => { :code => 'M' })
       else
         ActiveMerchant::Billing::Response.new(false, 'VirtualTerminal: Forced failure', { :message => 'Invalid Credit Card' }, :test => true)
       end
@@ -44,7 +44,7 @@ module Spree
        puts '---------------------------purchase---------------------------'
        puts credit_card.to_yaml
       if self.valid(credit_card.number)
-        ActiveMerchant::Billing::Response.new(true, 'VirtualTerminal: Forced success', {}, :test => true, :authorization => '12345', :avs_result => { :code => 'A' })
+        ActiveMerchant::Billing::Response.new(true, 'VirtualTerminal: Forced success', {}, :test => true, :authorization => '12345', :avs_result => { :code => 'M' })
       else
         ActiveMerchant::Billing::Response.new(false, 'VirtualTerminal: Forced failure', :message => 'Invalid Credit Card', :test => true)
       end

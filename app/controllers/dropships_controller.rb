@@ -16,10 +16,9 @@ class DropshipsController < ActionController::Base # as opposed to Spree::Orders
   #  @outstanding_orders = Spree::Order.where(payment_state: 'paid').where(shipment_state: 'ready')
 
  
-    if params.has_key? 'filter' and params[:filter] == 'unpaid'
+    if params.has_key? 'filter' and params[:filter] == 'all'
 
-          @orders = Spree::Order.where.not(payment_state: 'paid')
-    
+     @orders  = Spree::Order.all
 
     elsif params.has_key? 'filter' and params[:filter] == 'unshipped'
 
@@ -30,9 +29,10 @@ class DropshipsController < ActionController::Base # as opposed to Spree::Orders
 
 
           @orders = Spree::Order.where(payment_state: 'paid').where(shipment_state: 'shipped')
+    
     else
-
-          @orders  = Spree::Order.all
+         
+          @orders = Spree::Order.where.not(payment_state: 'paid')
 
     end
 

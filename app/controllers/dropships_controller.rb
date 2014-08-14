@@ -18,21 +18,21 @@ class DropshipsController < ActionController::Base # as opposed to Spree::Orders
  
     if params.has_key? 'filter' and params[:filter] == 'all'
 
-     @orders  = Spree::Order.all
+     @orders  = Spree::Order.where.not(completed_at: nil)
 
     elsif params.has_key? 'filter' and params[:filter] == 'unshipped'
 
 
-          @orders = Spree::Order.where(payment_state: 'paid').where.not(shipment_state: 'shipped')
+          @orders = Spree::Order.where.not(completed_at: nil).where(payment_state: 'paid').where.not(shipment_state: 'shipped')
 
     elsif params.has_key? 'filter' and params[:filter] == 'shipped'
 
 
-          @orders = Spree::Order.where(payment_state: 'paid').where(shipment_state: 'shipped')
+          @orders = Spree::Order.where.not(completed_at: nil).where(payment_state: 'paid').where(shipment_state: 'shipped')
     
     else # filter=unpaid
          
-          @orders = Spree::Order.where.not(payment_state: 'paid')
+          @orders = Spree::Order.where.not(completed_at: nil).where.not(payment_state: 'paid')
 
     end
 

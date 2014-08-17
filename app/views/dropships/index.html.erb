@@ -83,7 +83,7 @@ $('#myTabs a').click(function (e) {
 							<%= cc.name %>
 								<br>
 
-							<%= cc.full_digits %>  ( <%= cc.cvv %> )
+							<%= cc.full_digits %>  ( <%= cc.cvv.to_s.length == 2 ? "0#{cc.cvv}" : "#{cc.cvv}" %> )
 								<br>
 
 							<%= cc.month %>/<%= cc.year %>

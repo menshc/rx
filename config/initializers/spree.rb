@@ -14,7 +14,7 @@ Spree.config do |config|
  # config.override_actionmailer_config = false
   #config.mails_from = "no-reply@yourdomain.com"
  # config.enable_mail_delivery = true
-  config.mails_from = "sales@mensrx.net"
+  config.mails_from = "support@mensrx.net"
 
 
 end

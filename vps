@@ -1,0 +1,1 @@
+ssh -i config/deploy/keys/deploy.rsa deploy@94.102.50.47

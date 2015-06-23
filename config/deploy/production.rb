@@ -38,7 +38,7 @@ role :db,  %w{94.102.50.47}
    roles: %w{web app db},
    ssh_options: {
      user: 'rx', # overrides user setting above
-     keys: './config/deploy/keys/deploy.rsa',
+     keys: '~/.ssh/rx/deploy.rsa',
      forward_agent: false,
      auth_methods: %w(publickey)
      # password: 'please use keys'
